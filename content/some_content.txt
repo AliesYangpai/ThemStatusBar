@@ -1,0 +1,37 @@
+1.沉浸式状态栏
+  沉浸式：修改（状态栏）和（虚拟键位）的背景风格，使之达到视觉UI的统一效果
+  适用范围与方式
+ 【4.4之前】
+  无法使用，google不支持沉浸式
+ 【4.4-5.0) 
+   1.在setContentView之前设置
+              getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+   2.反射获状态栏高度
+   3.创建占位view，并加入到decoreView中
+   4.遍历deoreView的android.R.id.content（Framlayout）的子布局，并设置setFitsSystemWindows   
+ 【5.0之后】
+   代码中设置
+   // 状态栏
+   getWindow().setStatusBarColor(Color.GREEN);  
+   // 虚拟键盘
+   getWindow().setNavigationBarColor(Color.GREEN);   
+   
+
+
+=========================================
+其他做法：
+4.4-5.0) 
+在style中设置（不推荐）
+   <item name="android:windowTranslucentNavigation">true</item>
+   <item name="android:windowTranslucentStatus">true</item>
+
+我的问题：
+1.真机虚拟键盘设置颜色无效的原因：
+答： 厂商已进行api限制，因此无法更改
+
+2.如何更改状态栏的背景色
+答：decorview反射
+3.android.R.id.content中content指的是么？
+答：基础布局中有2个布局，上面是标题栏，下面是Framlayout，而这个frameLayout的id就是android.R.id.content，同时
+这个frameLayout中的子布局就是我们的目标布局
