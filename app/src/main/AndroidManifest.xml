@@ -16,10 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".target.TargetCompatActivity"></activity>
+        <activity android:name=".target.TargetCompatActivity" />
         <activity android:name=".target.KitkatActivity" />
         <activity android:name=".target.LollipopActivity" />
-        <activity android:name=".target.BaseActivity" />
     </application>
 
 </manifest>
