@@ -12,6 +12,7 @@ import android.widget.Toast;
 import org.alie.themstatusbar.target.KitkatActivity;
 import org.alie.themstatusbar.target.LollipopActivity;
 import org.alie.themstatusbar.target.TargetCompatActivity;
+import org.alie.themstatusbar.target.TargetCompatPicActivity;
 
 /**
  * 部分参考：
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private Button btn1;
     private Button btn2;
     private Button btn3;
+    private Button btn4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +36,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     }
 
-    private void initView(){
+    private void initView() {
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
     }
-    private void initListener(){
+
+    private void initListener() {
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
     }
 
     @Override
@@ -49,30 +55,33 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.btn1: // 4.4 - 5.0 版本之间，如何进行适配
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
+                        Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     openActivity(KitkatActivity.class);
-                }else {
-                    Toast.makeText(this,"当前API非[4.4，5.0)",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "当前API非[4.4，5.0)", Toast.LENGTH_LONG).show();
                 }
 
                 break;
             case R.id.btn2:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     openActivity(LollipopActivity.class);
                 } else {
-                    Toast.makeText(this,"当前API小于5.0",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "当前API小于5.0", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn3:
                 openActivity(TargetCompatActivity.class);
+                break;
+            case R.id.btn4:
+                openActivity(TargetCompatPicActivity.class);
                 break;
         }
     }
 
 
     private void openActivity(Class<?> mClass) {
-        Intent intent = new Intent(this,mClass);
+        Intent intent = new Intent(this, mClass);
         startActivity(intent);
     }
 }
