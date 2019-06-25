@@ -17,7 +17,7 @@ public class TargetCompatPicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_target_compat_pic);
         ImmersiveUtil.setTranslucentAll(this);
         initView();
-        initData();
+//        initData();
     }
 
     private void initView() {
